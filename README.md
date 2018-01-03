@@ -6,6 +6,7 @@ A dead simple command-line calendar
 ```bash
 cd cdate
 make fclean
+vim config.h # Edit the config file to your liking, and compile !
 make
 make clean
 sudo cp cdate /usr/bin # or whatever your bin path is !

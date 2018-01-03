@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "cdate.h"
+#include "config.h"
 
 // !---
 int	main(int argc, char *argv[])
@@ -27,22 +28,20 @@ void	cdate_init(t_cdate *cdate)
 }
 
 // !---
-static const char	cdate_fmt0[] = "%H:%M";
-static const char	cdate_fmt1[] = "%a. %d %B %Y";
 void	cdate_str(t_cdate *cdate)
 {
 	char	str0[64];
 	char	str1[64];
 
-
+	printf(normal);
 	memset(str0, '\0', sizeof(str0));
 	memset(str1, '\0', sizeof(str1));
 	strftime(str0, sizeof(str0), cdate_fmt0, cdate->tm);
 	strftime(str1, sizeof(str1), cdate_fmt1, cdate->tm);
 	putchar('\n');
-	printf("\x1B[1;31m");
+	printf(active);
 	printf("%*s\n", (int)strlen(str0) + 3, str0);
-	printf("\x1B[0m");
+	//printf(normal);
 	printf("%*s\n", (int)strlen(str1) + 3, str1);	
 }
 
@@ -54,6 +53,7 @@ void	cdate_daytag(t_cdate *cdate)
 	int	i;
 	char	**daytags;
 
+	printf(normal);
 	daytags = (char **)daytag_en;
 	putchar('\n');
 	today = cdate->tm->tm_wday - 1;
@@ -61,11 +61,11 @@ void	cdate_daytag(t_cdate *cdate)
 	i = 0;
 	while (*daytags != NULL)
 	{
-		printf("\x1B[1;30m");
+		printf(darken);
 		if (i == today)
-			printf("\x1B[1;31m");
+			printf(active);
 		printf("%4s", *daytags);
-		printf("\x1B[0m");
+		printf(normal);
 		++daytags;
 		++i;
 	}
@@ -82,6 +82,7 @@ void	cdate_calendar(t_cdate *cdate)
 	int	i;
 	int	today;
 
+	printf(normal);
 	daycount = cdate_daycount(cdate);
 	padding = cdate->tm->tm_wday;
 	off = cdate->tm->tm_mday;
@@ -102,9 +103,9 @@ void	cdate_calendar(t_cdate *cdate)
 	while (i < daycount)
 	{
 		if (i == today)
-			printf("\x1B[1;31m");
+			printf(active);
 		printf("%4i", i + 1);
-		printf("\x1B[0m");
+		printf(normal);
 		++i;
 		++col;
 		if (col == 7)
