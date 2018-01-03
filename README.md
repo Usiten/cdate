@@ -15,3 +15,8 @@ sudo cp cdate /usr/bin # or whatever your bin path is !
 Then `cdate` to use it !
 
 More configuration comming soon :)
+
+## Screenshot
+
+![cdate](https://imgur.com/GETdkdx)
+
