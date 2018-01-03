@@ -18,5 +18,5 @@ More configuration comming soon :)
 
 ## Screenshot
 
-![cdate](https://imgur.com/GETdkdx)
+![cdate](https://imgur.com/GETdkdx.png)
 
