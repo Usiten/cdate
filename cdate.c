@@ -33,16 +33,16 @@ void	cdate_str(t_cdate *cdate)
 	char	str0[64];
 	char	str1[64];
 
-	printf(normal);
 	memset(str0, '\0', sizeof(str0));
 	memset(str1, '\0', sizeof(str1));
 	strftime(str0, sizeof(str0), cdate_fmt0, cdate->tm);
 	strftime(str1, sizeof(str1), cdate_fmt1, cdate->tm);
 	putchar('\n');
-	printf(active);
+
+	printf(normal);
 	printf("%*s\n", (int)strlen(str0) + 3, str0);
-	//printf(normal);
 	printf("%*s\n", (int)strlen(str1) + 3, str1);	
+	printf(RESET);
 }
 
 // !---
@@ -65,10 +65,11 @@ void	cdate_daytag(t_cdate *cdate)
 		if (i == today)
 			printf(active);
 		printf("%4s", *daytags);
-		printf(normal);
+		printf(RESET);
 		++daytags;
 		++i;
 	}
+	printf(RESET);
 	putchar('\n');
 }
 
@@ -102,10 +103,11 @@ void	cdate_calendar(t_cdate *cdate)
 	today < 0 ? today = daycount - 1 : (0);
 	while (i < daycount)
 	{
+		printf(normal);
 		if (i == today)
 			printf(active);
 		printf("%4i", i + 1);
-		printf(normal);
+		printf(RESET);
 		++i;
 		++col;
 		if (col == 7)
