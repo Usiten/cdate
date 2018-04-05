@@ -14,7 +14,7 @@ int	main(int argc, char *argv[])
 	t_cdate		cdate;
 
 	cdate_init(&cdate);
-	cdate_str(&cdate);	
+	cdate_str(&cdate);
 	cdate_daytag(&cdate);
 	cdate_calendar(&cdate);
 	return (0);
@@ -41,12 +41,12 @@ void	cdate_str(t_cdate *cdate)
 
 	printf(normal);
 	printf("%*s\n", (int)strlen(str0) + 3, str0);
-	printf("%*s\n", (int)strlen(str1) + 3, str1);	
+	printf("%*s\n", (int)strlen(str1) + 3, str1);
 	printf(RESET);
 }
 
 // !---
-static const char	*daytag_en[] = {"m", "t", "w", "t", "f", "s", "S", NULL};
+static const char	* const daytag_en[] = {"m", "t", "w", "t", "f", "s", "S", NULL};
 void	cdate_daytag(t_cdate *cdate)
 {
 	int	today;
@@ -92,7 +92,8 @@ void	cdate_calendar(t_cdate *cdate)
 	while (off--)
 	{
 		--padding;
-		padding < 0 ? padding = 6 : (0);
+		if (padding < 0)
+			padding = 6;
 	}
 	while (padding--)
 	{
@@ -100,7 +101,8 @@ void	cdate_calendar(t_cdate *cdate)
 		printf("%4c", ' ');
 	}
 	today = cdate->tm->tm_mday - 1;
-	today < 0 ? today = daycount - 1 : (0);
+	if (today < 0)
+		today = daycount - 1;
 	while (i < daycount)
 	{
 		printf(normal);
@@ -136,7 +138,6 @@ int	cdate_daycount(t_cdate *cdate)
 		year = cdate->tm->tm_year;
 		is_leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 		count = is_leap ? 29 : 28;
-
 	}
 	else
 		count = 31;

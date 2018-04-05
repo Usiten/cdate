@@ -20,7 +20,7 @@
 # define RESET		"\x1B[0m"
 
 // Normal text color
-const char	normal[] = YELLOW;
+const char	normal[] = WHITE;
 
 // Dark text color, used for day tags
 const char	darken[] = LIGHT_RED;
@@ -29,7 +29,7 @@ const char	darken[] = LIGHT_RED;
 const char	active[] = LIGHT_GREEN;
 
 // Time & date format,
-// SEE strftime MANPAGE FOR MORE EXPANSIONS 
+// SEE strftime MANPAGE FOR MORE EXPANSIONS
 // http://man7.org/linux/man-pages/man3/strftime.3.html
 
 // Time format, by default 'HH:MM'
